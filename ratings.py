@@ -51,6 +51,21 @@ def change_random_rating(ratings):
 
     return ratings
 
+def change_selected_rating(ratings):
+    
+    for i, key in enumerate(ratings):
+        print(f"{i + 1} {key}")
+
+    chosen_num = input("What is the number of the restaurant to update? ")
+        
+    for i, key in enumerate(ratings):   
+        if i + 1 == chosen_num:
+            chosen_restaurant = key
+
+    validate_rating_num(chosen_restaurant, ratings)
+
+    return ratings
+
 def ratings_app():
     current_ratings = create_dictionary('scores.txt')
 
@@ -61,7 +76,8 @@ def ratings_app():
     [S]ee all ratings
     [A]dd a new restaurant rating
     [U]pdate a rating of random restaurant
-    [Q]uit""")
+    [C]hoose a restaurant to change its rating
+    [E]xit""")
     print()
 
     while True:
@@ -77,8 +93,11 @@ def ratings_app():
 
         elif user_choice.upper().startswith("U"):
             current_ratings = change_random_rating(current_ratings)
+
+        elif user_choice.upper().startswith("C"):
+            current_ratings = change_selected_rating(current_ratings)
             
-        elif user_choice.upper().startswith("Q"):
+        elif user_choice.upper().startswith("E"):
             print("Thanks! Bye!")
             break
 
