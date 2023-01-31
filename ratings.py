@@ -56,8 +56,19 @@ def change_selected_rating(ratings):
     for i, key in enumerate(ratings):
         print(f"{i + 1} {key}")
 
-    chosen_num = input("What is the number of the restaurant to update? ")
+    print()
+
+    while True:
+        number = input("Which restaurant would you like to update? ")
         
+        if number.isnumeric() and int(number) < len(ratings) + 1 and int(number) > 0:
+            chosen_num = int(number)
+            break
+        else:
+            print("Try again. Input number from given list")
+
+        print()
+    
     for i, key in enumerate(ratings):   
         if i + 1 == chosen_num:
             chosen_restaurant = key
